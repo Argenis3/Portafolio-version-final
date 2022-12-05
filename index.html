@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mi portafolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<div id="header">
+				<span class="logo icon fa-paper-plane"></span>
+				<h1>Hola. Mi nombre es Argenis Emanuel Aragón López</h1>
+				<p>Esta es la versión final de mi portafolio 
+				<br />
+				Para la materia de Ingeniería en sistemas computacionales. </p>
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<header class="major container medium">
+					<h2>En este portafolio podras encontrar 
+					<br />
+					todas las actividades que se han realizado 
+					<br />
+					a lo largo de todo el semestre</h2>
+					<!--
+					<p>Tellus erat mauris ipsum fermentum<br />
+					etiam vivamus nunc nibh morbi.</p>
+					-->
+				</header>
+
+				<div class="box alt container">
+					<section class="feature left">
+						<a href="C:\Users\argen\Downloads\Tarea 1_investigaciónstackoverflow_Argenis.pdf" class="image icon "><img src="images/apple-touch-icon@2.png" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 1</h3>
+							<p>Esta tarea fue una investigación acerca de stackoverflow</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="file:///C:/Users/argen/Documents/Mi_sitio_web.html" class="image icon solid "><img src="images/html-png-9.png" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 2</h3>
+							<p>Esta tarea fue la primer página hecha con html.</p>
+						</div>
+					</section>
+					<section class="feature left">
+						<a href="C:\Users\argen\Documents\ACTIVIDAD_INVESTIGACIÓN Y DOCUMETACION CSS JAVA Y HTML ARGENIS.docx" class="image icon solid "><img src="images/Captura de pantalla 2022-12-04 162024.png" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 3</h3>
+							<p>Documentación de CSS, JavaScript, HTML. </p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="C:\Users\argen\Desktop\boostrap\Mi página con navbar.html" class="image icon "><img src="images/Bootstrap_logo.svg.png" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 4</h3>
+							<p>Esta tarea fue la primer página con navbar</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="https://github.com/Argenis3/Mi_primer_repo" class="image icon "><img src="images/25231.png" alt="" /></a>
+						<div class="content">
+							<h3>Mi primer repositorio</h3>
+							<p>Primer repositorio creado en github</p>
+						</div>
+					</section>
+					<section class="feature left">
+						<a href="C:\Users\argen\Documents\Actividades.docx" class="image icon "><img src="images/2172875.png" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 6</h3>
+							<p>Cinco tareas en orden de importancia</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="C:\Users\argen\source\repos\triangulos\triangulos.zip" class="image icon "><img src="images/ISO_C++_Logo.svg.png" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 7</h3>
+							<p>Hacer un c+odigo en C++ que detecte que tipo de trianguo se presenta en base a sus medidas</p>
+						</div>
+					</section>
+					<section class="feature left">
+						<a href="C:\Users\argen\source\repos\triangulos\triangulos.zip" class="image icon "><img src="images/social-media-logo-in-black-and-white-color-free-vector.webp" alt="" /></a>
+						<div class="content">
+							<h3>Tarea 8</h3>
+							<p>Documentación de tecnologías</p>
+						</div>
+					</section>
+				</div>
+				<footer class="major container medium">
+					
+					<div>Teachable Machine Image Model</div>
+<button type="button" onclick="init()">Start</button>
+<div id="webcam-container"></div>
+<div id="label-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+<script type="text/javascript">
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "https://teachablemachine.withgoogle.com/models/n0MoQ1u5T/";
+
+    let model, webcam, labelContainer, maxPredictions;
+
+    // Load the image model and setup the webcam
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // load the model and metadata
+        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+        // or files from your local hard drive
+        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Convenience function to setup a webcam
+        const flip = true; // whether to flip the webcam
+        webcam = new tmImage.Webcam(400, 400, flip); // width, height, flip
+        await webcam.setup(); // request access to the webcam
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // append elements to the DOM
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) { // and class labels
+            labelContainer.appendChild(document.createElement("div"));
+        }
+    }
+
+    async function loop() {
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    // run the webcam image through the image model
+    async function predict() {
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+    }
+</script>
+					<ul class="actions special">
+						<li><a href="#" class="button">Ir al inicio</a></li>
+					</ul>
+				</footer>
+				
+				
+
+			</div>
+
+		<!-- Footer -->
+			
+
+	</body>
+</html>
